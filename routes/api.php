@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/consulta/cnpj', 'Api\\ReceitaFederalController@consultaCnpj');
+Route::get('/empresa', 'Api\\EmpresaController@listarPorSituacao');
+Route::post('/empresa', 'Api\\EmpresaController@criar');
+Route::post('/empresa/{id}', 'Api\\EmpresaController@atualizar');
+Route::get('/empresa/{id}', 'Api\\EmpresaController@listarEmpresa');
+Route::get('/empresa/{id}/delete', 'Api\\EmpresaController@apagar');

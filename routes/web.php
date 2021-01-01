@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Site\\EmpresaController@index')->name("home");
+Route::get('/empresa/cadastro', 'Site\\EmpresaController@criar')->name("criar");
+Route::get('/empresa/editar/{id}', 'Site\\EmpresaController@editar')->name("editar");
