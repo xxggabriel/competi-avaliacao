@@ -1,6 +1,6 @@
 # Avaliação Tecnica - Grupo Competi
 
-![](https://github.com/xxggabriel/competi-avaliacao/tree/main/public/svg/logocolor.svg)
+![](https://raw.githubusercontent.com/xxggabriel/competi-avaliacao/main/public/logocolor.svg)
 
 
 ## Rotas
@@ -9,7 +9,7 @@
  - Já as outras são as rotas das views (que estão no diretorio: ./routes/web.php).
 
 ## Validações
-![](https://github.com/xxggabriel/competi-avaliacao/tree/main/public/img/validacao.gif)
+![](https://raw.githubusercontent.com/xxggabriel/competi-avaliacao/main/public/img/validacao.gif)
  
  - Duplicidade : A função para verificar se o CNPJ da empresa já foi cadastrada é feita na hora de fazer o "insert" no DB, a função válida se o CNPJ existe no DB, caso exista, retorne um erro, mas deixa inserir caso o CNPJ esteja com o registro excluído.
  - Campos (inputs): estão sendo válidados tanto no front-end quanto no back-end, para proporcionar uma navegação mais fácil possivel para o usuário no front-end e para segurançã no back-end. A validação dos campos no back-end é feita por 3 funções (validar(), regras()), messagens()).
@@ -17,7 +17,7 @@
 
 ## Listagem Das Empresas
 
-![](https://github.com/xxggabriel/competi-avaliacao/tree/main/public/img/listagem-empresas.gif)
+![](https://raw.githubusercontent.com/xxggabriel/competi-avaliacao/main/public/img/listagem-empresas.gif)
 
 A listagem de empresas tem 3 modos de visualização
  - Listar apenas as ativas
