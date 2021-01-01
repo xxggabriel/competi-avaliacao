@@ -5,7 +5,7 @@
 
 ## Rotas
 
- - As rotas utilizadas pela API (as rota dela está no diretorio: ./routes/api.php).
+ - Uma das rotas é exclusiva para utilizar a API (as rota dela está no diretorio: ./routes/api.php).
  - Já as outras são as rotas das views (que estão no diretorio: ./routes/web.php).
 
 ## Validações
