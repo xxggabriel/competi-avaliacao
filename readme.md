@@ -1,6 +1,6 @@
 # Avaliação Tecnica - Grupo Competi
 
-![](https://raw.githubusercontent.com/xxggabriel/competi-avaliacao/main/public/logocolor.svg)
+![](https://github.com/xxggabriel/competi-avaliacao/blob/main/public/svg/logocolor.svg)
 
 
 ## Rotas
