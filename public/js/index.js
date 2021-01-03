@@ -1,10 +1,9 @@
 $(function(){
-    listarEmpresas()
-    
+    rodarListagemEmpresas()
 })
 
 $('input[name="situacao"]').click(function(){
-    listarEmpresas();
+    rodarListagemEmpresas()
 })
 
 function listarEmpresas(url = null){
@@ -14,7 +13,6 @@ function listarEmpresas(url = null){
     }
     var situacao = $('input[name="situacao"]:checked').val()
     
-    $("tbody").html("")
     $.ajax({
         url : url,
         method : "GET",
@@ -27,7 +25,6 @@ function listarEmpresas(url = null){
             empresas.forEach(empresa => {
                 if(empresa.situacao == "inativa"){
                     backgroundTr = 'style="background-color: #e673aa;"'
-                    console.log("AQUI")
                 } else {
                     backgroundTr = 'style="background-color: #a3cfe0;"'
                 }
@@ -67,7 +64,7 @@ function deletarEmpresa(id){
         url : "api/empresa/"+id+"/delete",
         method : "GET",
         success : function(){
-            ListarEmpresas();
+            rodarListagemEmpresas()
         }
     })
 }
@@ -115,7 +112,7 @@ function adicionarLinkPaginacao(nomePagina, url, disabled = false, checked = fal
 
     if(!disabled){
         $("#pagination").append(`
-            <li class="page-item ${active}"><button class="page-link" onclick="listarEmpresas('${url}')">${nomePagina}</button></li>
+            <li class="page-item ${active}"><button class="page-link" onclick="rodarListagemEmpresas('${url}')">${nomePagina}</button></li>
         `) 
     } else {
         
@@ -123,4 +120,31 @@ function adicionarLinkPaginacao(nomePagina, url, disabled = false, checked = fal
             <li class="page-item disabled "><button class="page-link" disabled>${nomePagina}</button></li>
         `) 
     }
+}
+function removeLoadEmpresa(){
+    $(".load").remove();
+}
+function loadEmpresa() {
+    $("tbody").append(`
+        <tr class="load">
+            <th></th>
+            <td></td>
+            <td>
+                <img src="/svg/load.svg" alt="">
+            </td>
+            <td></td>
+            <td></td>
+            
+        </tr>
+    `)
+}
+
+function rodarListagemEmpresas(url = null) {
+    $("tbody").html("")
+    $("#pagination").html("")
+    loadEmpresa()
+    setTimeout(() => {
+        removeLoadEmpresa()
+        listarEmpresas(url)
+    }, 400);
 }
