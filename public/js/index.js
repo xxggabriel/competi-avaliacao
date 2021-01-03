@@ -76,8 +76,6 @@ function paginacao(paginacao){
 
     var totalPaginas = Math.ceil(paginacao.total / paginacao.per_page)
     
-
-    console.log(totalPaginas, paginacao.total / paginacao.per_page)
     $("#pagination").html("")
     if(paginacao.prev_page_url){
         adicionarLinkPaginacao('Anterior', paginacao.prev_page_url)
@@ -85,13 +83,19 @@ function paginacao(paginacao){
         adicionarLinkPaginacao('Anterior', null, true)
     }
     
+    
+    var checked = false
     for (let index = 1; index <= totalPaginas; index++) {
+        if(paginacao.current_page == index){
+            checked = true
+        }
+        console.log(paginacao.current_page, checked, index)
         if(index <= 10){
-            adicionarLinkPaginacao(index, paginacao.path+"?page="+totalPaginas)
+            adicionarLinkPaginacao(index, paginacao.path+"?page="+totalPaginas, false, checked)
         } else {
             adicionarLinkPaginacao(totalPaginas, paginacao.path+"?page="+totalPaginas)
         }
-  
+        checked = false
     }
 
     if(paginacao.next_page_url){
@@ -102,15 +106,21 @@ function paginacao(paginacao){
 
 }
 
-function adicionarLinkPaginacao(nomePagina, url, disabled = false){
+function adicionarLinkPaginacao(nomePagina, url, disabled = false, checked = false){
+    var active = ''
+    
+    if(checked){
+        active = 'active'
+    }
+
     if(!disabled){
         $("#pagination").append(`
-            <li class="page-item"><button class="page-link" onclick="listarEmpresas('${url}')">${nomePagina}</button></li>
+            <li class="page-item ${active}"><button class="page-link" onclick="listarEmpresas('${url}')">${nomePagina}</button></li>
         `) 
     } else {
-
+        
         $("#pagination").append(`
-            <li class="page-item disabled"><button class="page-link" disabled>${nomePagina}</button></li>
+            <li class="page-item disabled "><button class="page-link" disabled>${nomePagina}</button></li>
         `) 
     }
 }
