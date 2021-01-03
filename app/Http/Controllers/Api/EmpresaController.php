@@ -17,11 +17,11 @@ class EmpresaController extends Controller
         if($situacaoEmpresa == "ativa" || $situacaoEmpresa == "inativa"){
             $empresa = Empresa::where("situacao", $situacaoEmpresa)
                             ->where("status", 1)
-                            ->orderBy('updated_at','DESC')->get();
+                            ->orderBy('updated_at','DESC')->paginate(5);
         } else {
             $empresa = Empresa::where("status", 1)
                             ->orderBy('updated_at','DESC')
-                            ->get();
+                            ->paginate(5);
 
         }
 

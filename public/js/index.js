@@ -1,23 +1,28 @@
 $(function(){
-    ListarEmpresas()
+    listarEmpresas()
+    
 })
 
 $('input[name="situacao"]').click(function(){
-    ListarEmpresas();
+    listarEmpresas();
 })
 
-function ListarEmpresas(){
-
+function listarEmpresas(url = null){
+    
+    if(url == null){
+        url = "/api/empresa?page=1"
+    }
     var situacao = $('input[name="situacao"]:checked').val()
     
     $("tbody").html("")
     $.ajax({
-        url : "api/empresa",
+        url : url,
         method : "GET",
         data : {
             situacao : situacao
         }, success : function(empresas){
-            
+            paginacao(empresas)
+            empresas = empresas.data
             var backgroundTr 
             empresas.forEach(empresa => {
                 if(empresa.situacao == "inativa"){
@@ -65,4 +70,47 @@ function deletarEmpresa(id){
             ListarEmpresas();
         }
     })
+}
+
+function paginacao(paginacao){
+
+    var totalPaginas = Math.ceil(paginacao.total / paginacao.per_page)
+    
+
+    console.log(totalPaginas, paginacao.total / paginacao.per_page)
+    $("#pagination").html("")
+    if(paginacao.prev_page_url){
+        adicionarLinkPaginacao('Anterior', paginacao.prev_page_url)
+    } else {
+        adicionarLinkPaginacao('Anterior', null, true)
+    }
+    
+    for (let index = 1; index <= totalPaginas; index++) {
+        if(index <= 10){
+            adicionarLinkPaginacao(index, paginacao.path+"?page="+totalPaginas)
+        } else {
+            adicionarLinkPaginacao(totalPaginas, paginacao.path+"?page="+totalPaginas)
+        }
+  
+    }
+
+    if(paginacao.next_page_url){
+        adicionarLinkPaginacao('Próximo', paginacao.next_page_url)
+    } else {
+        adicionarLinkPaginacao('Próximo', null, true)
+    }
+
+}
+
+function adicionarLinkPaginacao(nomePagina, url, disabled = false){
+    if(!disabled){
+        $("#pagination").append(`
+            <li class="page-item"><button class="page-link" onclick="listarEmpresas('${url}')">${nomePagina}</button></li>
+        `) 
+    } else {
+
+        $("#pagination").append(`
+            <li class="page-item disabled"><button class="page-link" disabled>${nomePagina}</button></li>
+        `) 
+    }
 }

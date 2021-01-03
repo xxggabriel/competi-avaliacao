@@ -41,6 +41,12 @@
             
           </tbody>
         </table>
+        
+        <nav>
+          <ul class="pagination justify-content-center" id="pagination">
+            
+          </ul>
+        </nav>
     </div>
 @endsection
 
