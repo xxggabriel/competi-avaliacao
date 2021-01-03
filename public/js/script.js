@@ -240,7 +240,7 @@ function validarCampos(){
         erro = false
     }
 
-    if($("#estado").val().length != 2){
+    if($("#estado").val().length > 0 && $("#estado").val().length != 2){
         $("#estado").addClass("is-invalid")
         $("#estado_msg").addClass("invalid-feedback").html("Estado inválido.")
         erro = false

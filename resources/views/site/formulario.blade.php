@@ -121,7 +121,7 @@
             </div>
 
             <button class="btn btn-danger" onclick="retornarInicio()">Voltar</button>
-            <button class="btn btn-success" id="btn-salvar" onclick="salvarEmpresa({{$id}})">Cadastrar</button>
+            <button class="btn btn-success" id="btn-salvar" onclick="salvarEmpresa({{$id}})">Salvar</button>
         </form>
     </div>
         
